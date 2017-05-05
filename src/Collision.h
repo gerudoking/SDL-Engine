@@ -22,11 +22,11 @@ class Collision {
                         };
 
             for (auto& v : A) {
-                v = Rotate(v - a.GetCenter(), angleOfA) + a.GetCenter();
+                v = Rotate(v - a.BoxCenter(), angleOfA) + a.BoxCenter();
             }
 
             for (auto& v : B) {
-                v = Rotate(v - b.GetCenter(), angleOfB) + b.GetCenter();
+                v = Rotate(v - b.BoxCenter(), angleOfB) + b.BoxCenter();
             }
 
             Vec2 axes[] = { Norm(A[0] - A[1]), Norm(A[1] - A[2]), Norm(B[0] - B[1]), Norm(B[1] - B[2]) };

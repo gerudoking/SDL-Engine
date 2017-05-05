@@ -1,6 +1,7 @@
-bin/State.o: src/State.cpp src/State.h src/GameObject.h src/Rect.h \
- src/Vec2.h src/Sprite.h C:\SDL-2.0.5\include\SDL2/SDL_image.h \
- C:\SDL-2.0.5\include\SDL2/SDL.h C:\SDL-2.0.5\include\SDL2/SDL_main.h \
+bin/Animation.o: src/Animation.cpp src/Animation.h src/GameObject.h \
+ src/Rect.h src/Vec2.h src/Timer.h src/Sprite.h \
+ C:\SDL-2.0.5\include\SDL2/SDL_image.h C:\SDL-2.0.5\include\SDL2/SDL.h \
+ C:\SDL-2.0.5\include\SDL2/SDL_main.h \
  C:\SDL-2.0.5\include\SDL2/SDL_stdinc.h \
  C:\SDL-2.0.5\include\SDL2/SDL_config.h \
  C:\SDL-2.0.5\include\SDL2/SDL_platform.h \
@@ -42,17 +43,18 @@ bin/State.o: src/State.cpp src/State.h src/GameObject.h src/Rect.h \
  C:\SDL-2.0.5\include\SDL2/SDL_system.h \
  C:\SDL-2.0.5\include\SDL2/SDL_timer.h \
  C:\SDL-2.0.5\include\SDL2/SDL_version.h src/Game.h \
- C:\SDL-2.0.5\include\SDL2/SDL.h src/Resources.h src/TileSet.h \
- src/TileMap.h src/Face.h src/Alien.h src/Minion.h src/Penguins.h \
- src/InputManager.h src/Camera.h src/Collision.h
+ C:\SDL-2.0.5\include\SDL2/SDL.h src/State.h src/TileSet.h src/TileMap.h \
+ src/Resources.h
 
-src/State.h:
+src/Animation.h:
 
 src/GameObject.h:
 
 src/Rect.h:
 
 src/Vec2.h:
+
+src/Timer.h:
 
 src/Sprite.h:
 
@@ -148,22 +150,10 @@ src/Game.h:
 
 C:\SDL-2.0.5\include\SDL2/SDL.h:
 
-src/Resources.h:
+src/State.h:
 
 src/TileSet.h:
 
 src/TileMap.h:
 
-src/Face.h:
-
-src/Alien.h:
-
-src/Minion.h:
-
-src/Penguins.h:
-
-src/InputManager.h:
-
-src/Camera.h:
-
-src/Collision.h:
+src/Resources.h:

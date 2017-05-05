@@ -20,6 +20,9 @@
 
  	void Shoot();
 
+ 	void NotifyCollision(GameObject& other);
+ 	bool Is(std::string type);
+
  	static Penguins* player;
  private:
  	Sprite bodySp;

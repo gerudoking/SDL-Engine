@@ -26,10 +26,12 @@
  		else
  			minionArray.emplace_back(Minion(this, i * 360/nMinions));
  	}
+
+ 	alienCount++;
  }
 
  Alien::~Alien(){
-
+ 	alienCount--;
  }
 
  void Alien::Update(float dt){
@@ -73,6 +75,16 @@
 
  	for(unsigned i = 0; i < minionArray.size(); i++){
  		minionArray.at(i).Update(dt);
+ 	}
+ }
+
+ bool Alien::Is(std::string type){
+ 	return (type == "Alien");
+ }
+
+ void Alien::NotifyCollision(GameObject& other){
+ 	if(other.Is("Bullet")){
+ 		hp -= 5;
  	}
  }
 

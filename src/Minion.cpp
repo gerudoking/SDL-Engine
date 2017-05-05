@@ -22,6 +22,8 @@
  	box.y = minionCenter->box.BoxCenter().y - sp.GetHeight()/2 + 200*sin(arcOffset * M_PI/180);
  	box.w = sp.GetWidth();
  	box.h = sp.GetHeight();
+
+ 	hp = 15;
  }
 
  void Minion::Update(float dt){
@@ -32,12 +34,25 @@
  	box.y = center->box.BoxCenter().y - sp.GetHeight()/2 + 200*sin(translation * M_PI/180);
  }
 
+ bool Minion::Is(std::string type){
+ 	return (type == "Minion");
+ }
+
+ void Minion::NotifyCollision(GameObject& other){
+ 	if(other.Is("Bullet")){
+ 		hp -= 5;
+ 	}
+ }
+
  void Minion::Render(int cameraX, int cameraY){
  	sp.Render(box.x - cameraX, box.y - cameraY, rotation);
  }
 
  bool Minion::IsDead(){
- 	return false;
+ 	if(hp <= 0)
+ 		return true;
+ 	else
+ 		return false;
  }
 
 void Minion::Shoot(Vec2 pos){
@@ -46,5 +61,5 @@ void Minion::Shoot(Vec2 pos){
 	float dy = InputManager::GetInstance().GetMouseY() - box.y;
 	float ds = pow(pow(dx, 2) + pow(dy, 2), 0.5);
 
-	Game::GetInstance()->GetState()->AddObject(new Bullet(box.x, box.y, atan(dy/dx)*180/M_PI, 20, ds, "img/minionbullet1.png"));
+	Game::GetInstance()->GetState()->AddObject(new Bullet(box.x, box.y, atan(dy/dx)*180/M_PI, 20, ds, "img/minionbullet2.png", 3, 30));
 }

@@ -7,7 +7,7 @@
 
  #include "Bullet.h"
 
- Bullet::Bullet(float x, float y, float angle, float speed, float maxDistance, std::string sprite) : sp(sprite){
+ Bullet::Bullet(float x, float y, float angle, float speed, float maxDistance, std::string sprite, int frameCount, float frameTime) : sp(sprite, frameCount, frameTime){
  	std::cout << "Is constructing\n";
  	box.x = x;
  	box.y = y;
@@ -30,6 +30,16 @@
 
  	subtrair = speed.Magnitude(speed);
  	distanceLeft -= subtrair;
+ }
+
+ void Bullet::NotifyCollision(GameObject& other){
+ 	if(other.Is("Penguins") || other.Is("Alien") || other.Is("Minion")){
+ 		distanceLeft = 0;
+ 	}
+ }
+
+ bool Bullet::Is(std::string type){
+ 	return (type == "Bullet");
  }
 
  void Bullet::Render(int cameraX, int cameraY){

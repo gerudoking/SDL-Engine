@@ -22,7 +22,11 @@
  	bool IsDead();
  	void Shoot(Vec2 pos);
 
+ 	void NotifyCollision(GameObject& other);
+ 	bool Is(std::string type);
+
  private:
+ 	int hp;
  	GameObject* center;
  	Sprite sp;
  	float arc;

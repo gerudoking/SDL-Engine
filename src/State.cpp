@@ -11,6 +11,7 @@
 #include "Penguins.h"
 #include "InputManager.h"
 #include "Camera.h"
+#include "Collision.h"
 #include <SDL.h>
 
 State::State(){
@@ -37,21 +38,17 @@ void State::Update(){
         quitRequested = true;
     }
 
-    /*if(InputManager::GetInstance().KeyPress(SDLK_SPACE)){
-    	std::cout << "espaco apertado\n";
-    	AddObject((float)InputManager::GetInstance().GetMouseX(), (float)InputManager::GetInstance().GetMouseY());
-    }
+    for(unsigned i = 0; i < objectArray.size(); i++) {
+			for(unsigned j = i+1; j < objectArray.size(); j++) {
+				if(objectArray.at(j)->Is("Animation")) {
 
-    if(InputManager::GetInstance().MousePress(LEFT_MOUSE_BUTTON)){
-    	std::cout << "mouse left apertado\n";
-    	for(int i = objectArray.size() - 1; i >= 0; --i) {
-            Face* face = (Face*) objectArray[i].get();
-            if(face->box.IsInside((float)InputManager::GetInstance().GetMouseX() + Camera::pos.x, (float)InputManager::GetInstance().GetMouseY() + Camera::pos.y)) {
-           		face->Damage(rand() % 10 + 10);
-           		break;
-          	}
-        }
-    }*/
+				}
+				else if(Collision::IsColliding(objectArray.at(i)->box, objectArray.at(j)->box, objectArray.at(i)->rotation, objectArray.at(j)->rotation)) {
+					objectArray.at(i)->NotifyCollision(*objectArray.at(j));
+					objectArray.at(j)->NotifyCollision(*objectArray.at(i));
+				}
+			}
+		}
 
     for(unsigned i = 0; i < objectArray.size(); i++){
     	objectArray.at(i)->Update(Game::GetInstance()->GetDeltaTime());

@@ -23,26 +23,21 @@
  	void Render(int cameraX = 0, int cameraY = 0);
  	bool IsDead();
 
+ 	void NotifyCollision(GameObject& other);
+ 	bool Is(std::string type);
+
+ 	static int alienCount = 0;
+
  private:
- 	class Action{
- 	public:
- 		enum ActionType {MOVE = 0, SHOOT = 1};
+ 	enum AlienState{MOVING = 1, RESTING = 2};
 
- 		Action(ActionType type, float x, float y){
- 			this->type = type;
- 			pos.x = x;
- 			pos.y = y;
- 		}
-
- 		ActionType type;
- 		Vec2 pos;
- 	};
-
+ 	AlienState state;
+ 	Timer restTimer;
+ 	Vec2 destination;
  	Sprite sp;
  	Vec2 speed;
  	int hp;
 
- 	std::queue<Action> taskQueue;
  	std::vector<Minion> minionArray;
  };
 

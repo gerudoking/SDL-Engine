@@ -81,12 +81,17 @@
  }
 
  void Penguins::NotifyCollision(GameObject& other){
- 	
+ 	if(other.Is("Bullet")){
+ 		hp -= 5;
+ 		if(IsDead()){
+ 			Camera::Unfollow();
+ 		}
+ 	}
  }
 
  void Penguins::Shoot(){
  	float dx = InputManager::GetInstance().GetMouseX() - box.x;
 	float dy = InputManager::GetInstance().GetMouseY() - box.y;
 	float ds = pow(pow(dx, 2) + pow(dy, 2), 0.5);
- 	Game::GetInstance()->GetState()->AddObject(new Bullet(box.BoxCenter().x + (cannonSp.GetWidth()/2)*cos(cannonAngle*M_PI/180), box.BoxCenter().y + (cannonSp.GetWidth()/2)*sin(cannonAngle*M_PI/180), cannonAngle, 20, ds, "img/penguinbullet.png"));
+ 	Game::GetInstance()->GetState()->AddObject(new Bullet(box.BoxCenter().x + (cannonSp.GetWidth()/2)*cos(cannonAngle*M_PI/180), box.BoxCenter().y + (cannonSp.GetWidth()/2)*sin(cannonAngle*M_PI/180), cannonAngle, 20, ds, "img/penguinbullet.png", 4, 30));
  }
